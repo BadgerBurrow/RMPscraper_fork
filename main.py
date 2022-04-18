@@ -2,9 +2,11 @@ import time
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.service import Service
 
 PATH = r"C:\Users\cambe\Downloads\geckodriver.exe"
-driver = webdriver.Firefox(executable_path=PATH)
+s = Service(PATH)
+driver = webdriver.Firefox(service=s)
 
 driver.get("https://www.ratemyprofessors.com/search/teachers?query=*&sid=1245")
 
