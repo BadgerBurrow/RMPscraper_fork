@@ -4,6 +4,8 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service
 
+
+#update path with the path to your geckodriver (lookup how to install)
 PATH = r"C:\Users\cambe\Downloads\geckodriver.exe"
 s = Service(PATH)
 driver = webdriver.Firefox(service=s)
@@ -15,7 +17,7 @@ time.sleep(10)
 button = driver.find_element(By.XPATH, '//button[@class="Buttons__Button-sc-19xdot-1 CCPAModal__StyledCloseButton-sc-10x9kq-2 gvGrz"]')
 button.click()
 
-#this clicks show more 3 times currently, will need to update with more clicks once bugs fixed
+#this clicks 'show more' 3 times currently, will need to update with more clicks once bugs fixed
 for i in range(1, 3):
     driver.find_element(By.XPATH, '//button[@class="Buttons__Button-sc-19xdot-1 PaginationButton__StyledPaginationButton-txi1dr-1 gjQZal"]').click()
     # waits until elements are loaded
