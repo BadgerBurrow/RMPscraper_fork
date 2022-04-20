@@ -25,7 +25,9 @@ for i in range(1, 3):
 
 #get all professors, ratings, and subjects taught
 professor = driver.find_elements(By.XPATH, '//div[@class="CardName__StyledCardName-sc-1gyrgim-0 cJdVEK"]')
-rating = driver.find_elements(By.XPATH,'//div[contains(text(),'"CardNumRatingNumber"')]') #FIXME: not getting ratings correctly
+rating = driver.find_elements(By.XPATH,'//div[@class = "CardNumRating__CardNumRatingNumber-sc-17t4b9u-2 kMhQxZ" or '
+                                       '      @class = "CardNumRating__CardNumRatingNumber-sc-17t4b9u-2 fJKuZx" or'
+                                       '      @class = "CardNumRating__CardNumRatingNumber-sc-17t4b9u-2 bUneqk"]')
 subject = driver.find_elements(By.XPATH, '//div[@class="CardSchool__Department-sc-19lmz2k-0 haUIRO"]')
 
 #populate a list with each
@@ -47,5 +49,10 @@ print(ratings_list)
 print(subject_list)
 # just for separating purpose
 print()
+#printing the length to make sure they are all equal
+print(len(professors_list))
+print(len(ratings_list))
+print(len(subject_list))
+
 
 #TODO: once debugged, format into a CSV
