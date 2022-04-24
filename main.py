@@ -58,6 +58,7 @@ print(len(subject_list))
 
 
 #TODO: once debugged, format into a CSV
-df = pd.DataFrame([professors_list, ratings_list, subject_list])
-df.to_csv('rmp.csv')
+df = pd.DataFrame({'professors_list':professors_list, 'ratings_list':ratings_list, 'subjects_list': subject_list})
+df.to_csv('rmp1.csv', index=False)
+print(df)
 driver.close()
