@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service
+import pandas as pd
 
 
 #update path with the path to your geckodriver (lookup how to install)
@@ -27,7 +28,8 @@ for i in range(1, 3):
 professor = driver.find_elements(By.XPATH, '//div[@class="CardName__StyledCardName-sc-1gyrgim-0 cJdVEK"]')
 rating = driver.find_elements(By.XPATH,'//div[@class = "CardNumRating__CardNumRatingNumber-sc-17t4b9u-2 kMhQxZ" or '
                                        '      @class = "CardNumRating__CardNumRatingNumber-sc-17t4b9u-2 fJKuZx" or'
-                                       '      @class = "CardNumRating__CardNumRatingNumber-sc-17t4b9u-2 bUneqk"]')
+                                       '      @class = "CardNumRating__CardNumRatingNumber-sc-17t4b9u-2 bUneqk" or'
+                                       '      @class = "CardNumRating__CardNumRatingNumber-sc-17t4b9u-2 cDKJcc"]')
 subject = driver.find_elements(By.XPATH, '//div[@class="CardSchool__Department-sc-19lmz2k-0 haUIRO"]')
 
 #populate a list with each
@@ -56,3 +58,7 @@ print(len(subject_list))
 
 
 #TODO: once debugged, format into a CSV
+df = pd.DataFrame({'professors_list':professors_list, 'ratings_list':ratings_list, 'subjects_list': subject_list})
+df.to_csv('rmp1.csv', index=False)
+print(df)
+driver.close()
