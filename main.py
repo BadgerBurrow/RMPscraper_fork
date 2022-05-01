@@ -33,6 +33,9 @@ rating = driver.find_elements(By.XPATH,'//div[@class = "CardNumRating__CardNumRa
                                        '      @class = "CardNumRating__CardNumRatingNumber-sc-17t4b9u-2 cDKJcc"]')
 
 subject = driver.find_elements(By.XPATH, '//div[@class="CardSchool__Department-sc-19lmz2k-0 haUIRO"]')
+difficulty = driver.find_elements(By.XPATH, '//div[@class="CardFeedback__CardFeedbackNumber-lq6nix-2 hroXqf"]')
+#link = driver.find_elements(By.XPATH, '//a[@class=="TeacherCard__StyledTeacherCard-syjs0d-0 dLJIlx"]')
+
 
 # populate a list with each
 professors_list = []
@@ -47,22 +50,34 @@ subject_list = []
 for d in range(len(subject)):
     subject_list.append(subject[d].text)
 
+difficulty_list = []
+for i in range(1, len(difficulty), 2):
+    difficulty_list.append(difficulty[i].text)
+"""
+link_list = []
+for x in range(len(link)):
+    link_list.append(link[x].text)
+"""
 #print for debugging purposes
 print(professors_list)
 print(ratings_list)
 print(subject_list)
+print(difficulty_list)
 # just for separating purpose
 print()
 #printing the length to make sure they are all equal
 print(len(professors_list))
 print(len(ratings_list))
 print(len(subject_list))
+print(len(difficulty_list))
+#print(len(link_list))
 
 
-#TODO: once debugged, format into a CSV
-df = pd.DataFrame([professors_list, ratings_list, subject_list])
+#To CSV
+df = pd.DataFrame([professors_list, ratings_list, subject_list, difficulty_list])
 df.to_csv('rmp.csv')
-df = pd.DataFrame({'professors_list':professors_list, 'ratings_list':ratings_list, 'subjects_list': subject_list})
+df = pd.DataFrame({'professors_list':professors_list, 'ratings_list':ratings_list, 'subjects_list': subject_list, 'difficulty_list': difficulty_list})
 df.to_csv('rmp1.csv', index=False)
 print(df)
+
 driver.close()
